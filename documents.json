@@ -1,11 +1,46 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
-    "file": "name",
+    "name": "client-status",
+    "title": "Client work status (draft)",
+    "for_each": "select id,name from clients where not archived order by name",
+    "file": "id",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Work and confirmed dates",
+        "sql": "select name,status,due_date,currency,fee from jobs where client_id=$1 order by due_date"
+      },
+      {
+        "title": "Records still needed",
+        "sql": "select j.name as job,r.name as requested,r.due_date from requests r join jobs j on j.id=r.job_id where j.client_id=$1 and r.received_on is null order by r.due_date"
+      }
+    ]
+  },
+  {
+    "name": "records-request",
+    "title": "Request for client records (draft)",
+    "for_each": "select id,name from clients where not archived order by name",
+    "file": "id",
+    "sections": [
+      {
+        "title": "Please provide these records",
+        "sql": "select j.name as job,r.name as requested,r.due_date from requests r join jobs j on j.id=r.job_id where j.client_id=$1 and r.received_on is null order by r.due_date"
+      }
+    ]
+  },
+  {
+    "name": "service-record",
+    "title": "Service completion record (draft)",
+    "for_each": "select id,name from clients where not archived order by name",
+    "file": "id",
+    "sections": [
+      {
+        "title": "Services, outcomes and evidence",
+        "sql": "select name,status,completed_on,outcome,evidence_ref,retain_until from jobs where client_id=$1 order by completed_on"
+      },
+      {
+        "title": "Recorded advice and conversations",
+        "sql": "select j.name as job,n.kind,n.name as detail,n.actor,n.created_at from notes n join jobs j on j.id=n.job_id where j.client_id=$1 order by n.created_at"
+      }
     ]
   }
 ]

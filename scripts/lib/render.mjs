@@ -57,7 +57,7 @@ footer{text-align:center;color:#888;font-size:12px;padding:20px}
 }
 
 export function writeOut(dir, name, html) {
-  const out = path.join(REPO_ROOT, dir);
+  const out = path.resolve(process.env.OUTPUT_DIR || REPO_ROOT, dir);
   mkdirSync(out, { recursive: true });
   const file = path.join(out, `${name}.html`);
   writeFileSync(file, html);

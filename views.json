@@ -1,13 +1,30 @@
 [
   {
     "name": "week",
-    "title": "This week",
-    "subtitle": "Accounting Practice for Claude Code: what needs attention, rendered by npm run view",
+    "title": "The practice week",
+    "subtitle": "Recorded deadlines, missing records and capacity",
     "sections": [
       {
         "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
+        "sql": "select name,client,owner,reason,days from attention order by days desc,name"
+      },
+      {
+        "title": "Capacity",
+        "sql": "select name,weekly_hours,due_next_7_days_hours,overload_hours from workload order by name"
+      }
+    ]
+  },
+  {
+    "name": "fees",
+    "title": "Fees and unbilled work",
+    "sections": [
+      {
+        "title": "Budget against time",
+        "sql": "select name,client,currency,budget_hours,hours,fee,time_value,fee_less_time_value from job_summary order by name"
+      },
+      {
+        "title": "Family groups",
+        "sql": "select client_group,currency,sum(unbilled) as unbilled from job_summary group by client_group,currency order by client_group,currency"
       }
     ]
   }

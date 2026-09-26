@@ -1,24 +1,9 @@
-# Why there is no front end
+# Why no front end
 
-Karbon is a database with a subscription. The tables underneath it are ordinary: a few entities, a few relationships, a handful of workflows you repeat every week. What you pay for is the layer on top that lets people who do not write SQL get at those tables. Screens, filters, dashboards, forms.
+An accounting practice's operating record is clients, work, people, dates, requests and time. Postgres holds the record; Claude Code, Codex, OpenCode or Cursor reads and updates it through the same CLI. The assistant is the door, not the data store.
 
-That layer used to be the whole product, because talking to a database was hard. It is not hard any more. Open this folder in Claude Code, describe what you want, and it writes the query, runs it, and explains the answer. Ask a question the dashboard never had a chart for and you still get an answer.
+You can ask for a family group's overdue records alongside its unbilled time, change a rule and inspect the query. There is no per-seat licence for this code. Hosting, agent subscriptions and maintenance still have costs.
 
-## What you gain
+A screen gives mobile entry, offline capture, drag-and-drop scheduling, visual shared inboxes and a client portal. This base provides none of those. Rendered dashboards are read-only snapshots, and imported email subjects are not a live inbox. Enterprise DNA builds a web or phone interface, integrations or another stack into a scoped custom version when the practice needs them.
 
-- **Better answers.** A dashboard shows what the vendor decided to chart. Here you ask your own question, in your own words, and get it answered against your own data.
-- **No seats.** Everyone who needs to look can look. The bill does not grow with headcount.
-- **Your data in your Postgres.** Plain tables. Back them up, query them from anything, leave any time. There is no export step because there is nothing to leave.
-- **A process that matches you.** When your way of working changes, you add a command. You do not wait for a feature request to clear.
-
-## What you give up
-
-- **A visual board.** Stages are a table you ask about, not cards you drag.
-- **A phone app.** It runs where Claude Code runs.
-- **A vendor help desk.** This is open source. Enterprise DNA supports the installed version for businesses that want someone to call.
-
-## Who this fits
-
-Small teams who already use Claude Code, or who would rather learn to ask than learn another interface. If your team needs a screen to look at all day, keep Karbon. If you need the answers more than the screens, this is cheaper, faster and yours.
-
-Installed and run for you: https://enterprisedna.co/omni/instead-of/karbon
+One local database has one operator at a time. Use hosted Postgres and properly scoped database credentials for shared work. Keep client evidence in a secured document store, restrict exports, and back up the database. The records must outlive the assistant.

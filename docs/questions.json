@@ -1,0 +1,42 @@
+[
+  [
+    "Which overdue jobs are also waiting for client records, and who owns them?",
+    "attention"
+  ],
+  [
+    "Which family groups have the most unfinished records and unbilled time?",
+    "groups"
+  ],
+  [
+    "Which jobs have used more time value than the agreed fee?",
+    "budgets"
+  ],
+  [
+    "How much unbilled work is over thirty days old, in each currency?",
+    "wip"
+  ],
+  [
+    "Who has more remaining work due this week than their weekly capacity?",
+    "workload"
+  ],
+  [
+    "Which partner reviews are late while a client deadline approaches?",
+    "review-queue"
+  ],
+  [
+    "Which missing records have not been chased since last week?",
+    "client-chase"
+  ],
+  [
+    "Which imported email subjects are still unresolved against overdue work?",
+    "triage"
+  ],
+  [
+    "Which open jobs have no deadline, no owner or no recent activity?",
+    "attention"
+  ],
+  [
+    "Which completed services have missing evidence or short retention dates?",
+    "compliance"
+  ]
+]

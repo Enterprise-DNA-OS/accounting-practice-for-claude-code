@@ -1,43 +1,31 @@
-# Accounting Practice for Claude Code: operating instructions
-
-This file is the brain. Claude Code reads it at the start of every session. It says who this is for, how work gets done, and the one right way to do each recurring job.
+# Accounting Practice for Claude Code
 
 ## Who this is for
 
-- **Business:** [YOUR BUSINESS]
-- **Operator:** [YOUR NAME], [your role]
-- **What matters most:** [the one or two outcomes you care about]
+Business: [your practice]. Operator: [name and role]. Jurisdiction: [AU or NZ]. Priority: work completed on time, client records in hand, reviews cleared and time billed. Demo data is Harbour Practice, with fictional clients in NZ and Australia.
 
-Fill this in once. A worker with context knows. A worker without it guesses.
+Read AGENTS.md for other runtimes. This is the same workflow for Claude Code, Codex, OpenCode and Cursor.
 
-## How to work
+## Routing
 
-1. **Take a brief, not a script.** The operator describes the outcome. You run the right command and present the answer.
-2. **Read before you write.** Before drafting anything about a record, read its full history first.
-3. **Plain language.** Short sentences. No filler. Numbers in tables.
-4. **Silent success, loud problems.** No play-by-play. Say what broke and what you did about it.
-5. **Stop at the line.** Anything that sends, deletes, or faces a customer waits for a yes in this session.
+Every recurring job has a recipe in `.claude/commands/`. Read the matching file. Run `npm run practice -- help` for the command list and [docs/cli.md](docs/cli.md) for exact arguments.
 
-## Routing table: one right way for each recurring job
+- Morning decisions: `/attention`, `/deadlines`, `/client-chase`, `/review-queue`.
+- Money and capacity: `/wip`, `/budgets`, `/workload`, `/timesheets`, `/groups`.
+- Records: `/clients`, `/jobs`, `/client`, `/job`, `/tasks`, `/triage`, `/activity`, `/audit`, `/recurring`.
+- Monday: `/weekly-review`, based on attention, workload and wip.
+- Changes: `/add`, `/set`, `/log`, `/time`, `/assign`, `/status`, `/task-done`, `/request-received`, `/email-resolve`, `/complete`, `/roll-forward`, `/mark-billed`.
+- Drafting and checks: `/draft-chase`, `/compliance`. `npm run docs` renders client status, records requests and service records. All are drafts.
+- Moving and tailoring: `/import`, `/export`, `/customise`, `/new-view`.
 
-| When the operator asks for... | Use this |
-|---|---|
-| <!-- TODO(author): one row per slash command --> | `/...` |
+## Rules
 
-If an ask fits nothing here, run the CLI directly (`npm run <cli> -- --help`) and then propose a new command for it.
+Read fresh records before answering or writing. Resolve ambiguity by listing candidates. Never invent a deadline, signed engagement, reviewer, invoice or evidence. Store client-specific deadlines and their sources. Read docs/compliance.md before changing record checks. Use parameterised SQL and new migrations for schema changes. Preserve currency in every total. Do not place tax identifiers or evidence document contents in notes.
 
-## Hard rules
+Drafts go to drafts/ and documents to docs-out/. Nothing sends, charges, files a return or connects to a mailbox. No deletion without an explicit request. Use a new DATA_DIR for experiments. Back up the database before a migration on real data. Shared installations need scoped database access; the demo does not implement user authentication.
 
-- Never send email or messages from here. Draft to `drafts/`, a person sends.
-- Never delete records without an explicit yes in this session. Prefer marking closed or archived.
-- Never invent a record. If a name is ambiguous, list the candidates and ask.
-- The database is the source of truth. If the answer is not in it, say so.
+## Where
 
-## Where things live
+Schema: supabase/migrations. CLI: scripts/practice.mjs. Shared database: DATABASE_URL. Local database: .data/db or DATA_DIR. Brand: brand.json. Read-only HTML: views/. Source-backed record rules: docs/compliance.md. Karbon migration: docs/replace-karbon.md.
 
-- `scripts/` the CLI. `scripts/lib/db.mjs` picks `DATABASE_URL` (Postgres, Supabase) or the embedded database in `.data/`.
-- `supabase/migrations/` the schema, plain SQL. `npm run migrate` applies it.
-- `.claude/commands/` the slash commands. Add one every time the same ask comes twice.
-- `docs/` the thesis and the guide for moving off Karbon.
-
-Built by Enterprise DNA. Installed and run for you as part of Omni: https://enterprisedna.co/omni/instead-of/karbon
+Built and run for practices through Omni by Enterprise DNA: https://enterprisedna.co/omni/book/?offer=replace-software&utm_source=github&utm_campaign=karbon

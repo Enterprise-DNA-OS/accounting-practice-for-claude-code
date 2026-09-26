@@ -1,5 +1,5 @@
 // One database handle for the whole repo.
-// DATABASE_URL set   -> node-postgres Pool (Postgres, Supabase, Neon, anything Postgres-shaped).
+// DATABASE_URL set   -> node-postgres Client (Postgres, Supabase, Neon, anything Postgres-shaped).
 // DATABASE_URL unset -> PGlite, an embedded Postgres persisted under ./.data/db (or DATA_DIR).
 // Both return the same shape: { mode, query(sql, params) -> rows[], exec(sql), close() }.
 
@@ -49,11 +49,11 @@ export async function getDb() {
 
   if (url) {
     const { default: pg } = await import('pg');
-    const pool = new pg.Pool({
+    const pool = new pg.Client({
       connectionString: url,
-      ssl: wantsSsl(url) ? { rejectUnauthorized: false } : undefined,
-      max: 4,
+      ssl: wantsSsl(url) ? { rejectUnauthorized: true } : undefined,
     });
+    await pool.connect();
     return {
       mode: 'postgres',
       async query(sql, params = []) {
