@@ -123,4 +123,4 @@ Read [what this gives and what a screen gives](docs/why-no-front-end.md). This b
 
 ## Licence and relationship
 
-MIT. Not affiliated with or endorsed by Karbon or Anthropic. Hosting and coding-agent usage have their own costs. [Omni by Enterprise DNA](https://enterprisedna.co/omni/instead-of/karbon) installs, customises and runs the practice system for you. [Book 30 minutes with Sam](https://enterprisedna.co/omni/book/?offer=replace-software&utm_source=github&utm_campaign=karbon&utm_medium=readme).
+MIT. Not affiliated with or endorsed by Karbon or Anthropic. Hosting and coding-agent usage have their own costs. [Omni by Enterprise DNA](https://enterprisedna.co/omni/instead-of/karbon?utm_source=github&utm_medium=readme&utm_campaign=karbon) installs, customises and runs the practice system for you. [Book 30 minutes with Sam](https://enterprisedna.co/omni/book/?offer=replace-software&utm_source=github&utm_campaign=karbon&utm_medium=readme).
